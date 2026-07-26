@@ -15,5 +15,5 @@ public class PeticionActualizarEstado {
     }
 
     public TareaEstado getEstatus() { return estatus; }
-    public void setStatus(TareaEstado estatus) { this.estatus = estatus; }
+    public void setEstatus(TareaEstado estatus) { this.estatus = estatus; }
 }

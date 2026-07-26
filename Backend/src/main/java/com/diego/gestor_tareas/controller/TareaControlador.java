@@ -22,7 +22,7 @@ public class TareaControlador {
         this.tareaServicio = tareaServicio;
     }
 
-    // POST /api/tasks
+    // POST /api/tareas
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RespuestaTarea crearTarea(@Valid @RequestBody PeticionCrearTarea request) {
@@ -43,21 +43,21 @@ public class TareaControlador {
                 .toList();
     }
 
-    // GET /api/tasks/5
+    // GET /api/tareas/(numero ID)
     @GetMapping("/{id}")
     public RespuestaTarea getTareaById(@PathVariable Long id) {
         Tarea tarea = tareaServicio.getTareaById(id);
         return RespuestaTarea.fromEntity(tarea);
     }
 
-    // PATCH /api/tasks/5/status
+    // PATCH /api/tareas/(numero ID/estatus
     @PatchMapping("/{id}/estatus")
     public RespuestaTarea actualizarEstatus(@PathVariable Long id, @Valid @RequestBody PeticionActualizarEstado request) {
         Tarea tarea = tareaServicio.actualizarEstatus(id, request.getEstatus());
         return RespuestaTarea.fromEntity(tarea);
     }
 
-    // DELETE /api/tasks/5
+    // DELETE /api/tareas/(numero ID)
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTask(@PathVariable Long id) {

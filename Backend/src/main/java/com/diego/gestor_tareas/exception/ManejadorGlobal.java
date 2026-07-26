@@ -24,7 +24,7 @@ public class ManejadorGlobal {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
-    // 422 - cuando una transición de estado no es válida (regla de negocio)
+    // 422 - cuando una transición de estado no es válida 
     @ExceptionHandler(TransicionInvalidaEstado.class)
     public ResponseEntity<RespuestaError> handleInvalidTransition(TransicionInvalidaEstado ex) {
         RespuestaError error = new RespuestaError(
@@ -52,7 +52,7 @@ public class ManejadorGlobal {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_CONTENT).body(error);
     }
 
-    // 400 - cuando el tipo de un parámetro no se puede convertir (ej. ?status=NOSEXISTE)
+    // 400 - cuando el tipo de un parámetro no se puede convertir (ej. ?estatus=NOSEXISTE)
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<RespuestaError> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
         String mensaje = "El valor '" + ex.getValue() + "' no es válido para el parámetro '" + ex.getName() + "'";
