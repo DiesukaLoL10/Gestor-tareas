@@ -21,9 +21,9 @@ Aplicación full-stack para gestionar el ciclo de vida de tareas (To-Do), desarr
 [ PENDING ] ---> [ IN_PROGRESS ] ---> [ COMPLETED ]
      |
      └---> [ CANCELLED ]
-
-## Arquitectura
 ```
+## Arquitectura
+
 El backend sigue una separación de capas:
 
 \`\`\`
