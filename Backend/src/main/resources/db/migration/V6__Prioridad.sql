@@ -1,0 +1,1 @@
+UPDATE tareas SET prioridad = 'MEDIA' WHERE prioridad = 'MEDIUM';

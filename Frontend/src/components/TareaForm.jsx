@@ -4,8 +4,12 @@ import { createTask } from '../services/TareaServicio.js';
 function TareaForm({ onTaskCreated }) {
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
+    const [fechaInicio, setFechaInicio] = useState('');
+    const [prioridad, setPrioridad] = useState('MEDIA'); // Nuevo estado
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const fechaActual = new Date().toISOString().split('T')[0];
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -13,10 +17,13 @@ function TareaForm({ onTaskCreated }) {
         setLoading(true);
 
         try {
-            const newTask = await createTask(titulo, descripcion);
+            // IMPORTANTE: Asegúrate de que tu TareaServicio reciba y envíe esta prioridad
+            const newTask = await createTask(titulo, descripcion, fechaInicio, prioridad);
             onTaskCreated(newTask);
             setTitulo('');
             setDescripcion('');
+            setFechaInicio('');
+            setPrioridad('MEDIA'); // Resetear
         } catch (err) {
             setError(err.message);
         } finally {
@@ -34,14 +41,25 @@ function TareaForm({ onTaskCreated }) {
                 </div>
             )}
 
-            <input
-                type="text"
-                placeholder="Título"
-                value={titulo}
-                onChange={(e) => setTitulo(e.target.value)}
-                className="w-full border rounded p-2 mb-2"
-                required
-            />
+            <div className="flex flex-col sm:flex-row gap-3 mb-3">
+                <input
+                    type="text"
+                    placeholder="Título"
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
+                    className="w-full sm:w-2/3 border rounded p-2"
+                    required
+                />
+                <select
+                    value={prioridad}
+                    onChange={(e) => setPrioridad(e.target.value)}
+                    className="w-full sm:w-1/3 border rounded p-2 bg-white"
+                >
+                    <option value="ALTA">Prioridad: ALTA</option>
+                    <option value="MEDIA">Prioridad: MEDIA</option>
+                    <option value="BAJA">Prioridad: BAJA</option>
+                </select>
+            </div>
 
             <textarea
                 placeholder="Descripción (opcional)"
@@ -50,10 +68,20 @@ function TareaForm({ onTaskCreated }) {
                 className="w-full border rounded p-2 mb-3"
             />
 
+            <input
+                type="date"
+                placeholder="Fecha de inicio"
+                value={fechaInicio}
+                min={fechaActual}
+                onChange={(e) => setFechaInicio(e.target.value)}
+                className="w-full border rounded p-2 mb-3"
+                required
+            />
+
             <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50 w-full sm:w-auto"
             >
                 {loading ? 'Creando...' : 'Crear tarea'}
             </button>
