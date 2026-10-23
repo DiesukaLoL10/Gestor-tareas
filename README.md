@@ -23,7 +23,7 @@ Aplicación full-stack para gestionar el ciclo de vida de tareas (To-Do), desarr
      └---> [ CANCELLED ]
 
 ## Arquitectura
-
+```
 El backend sigue una separación de capas:
 
 \`\`\`
