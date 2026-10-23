@@ -1,6 +1,6 @@
 # Gestor de Tareas
 
-Aplicación full-stack para gestionar el ciclo de vida de tareas (To-Do), desarrollada con enfoque empresarial (Enterprise-ready) como parte de una prueba técnica.
+Aplicación full-stack para gestionar el ciclo de vida de tareas (To-Do), desarrollada con enfoque empresarial como parte de una prueba técnica.
 
 ## Características Destacadas
 - **Reglas de Negocio Automáticas:** Asignación y revocación automática de la fecha de terminación según los cambios de estado.
