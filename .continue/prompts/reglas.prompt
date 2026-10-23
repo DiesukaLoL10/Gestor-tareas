@@ -1,8 +1,0 @@
----
-name: Reglas de Proyecto
-description: Reglas principales para el Gestor de Tareas
----
-Carga siempre este contexto:
-- Framework Front: React 19 + Tailwind CSS v4
-- Framework Back: Spring Boot 3 + Java 21
-- Requisito clave: Las tareas deben incluir fecha de inicio y filtros por estado.
